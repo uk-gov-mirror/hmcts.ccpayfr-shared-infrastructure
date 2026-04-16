@@ -10,6 +10,7 @@ module "ccpay-vault" {
   product_group_name      = "dcd_group_fees&pay_v2"
   common_tags             = var.common_tags
   create_managed_identity = true
+  jenkins_object_id       = data.azurerm_user_assigned_identity.jenkins.principal_id
 }
 
 module "feesregister-vault" {
@@ -25,6 +26,12 @@ module "feesregister-vault" {
   common_tags                 = var.common_tags
   managed_identity_object_ids = ["${data.azurerm_user_assigned_identity.ccpay-shared-identity.principal_id}"]
 }
+
+data "azurerm_user_assigned_identity" "jenkins" {
+  name                = "jenkins-${var.env}-mi"
+  resource_group_name = "managed-identities-${var.env}-rg"
+}
+
 
 data "azurerm_key_vault" "ccpay_key_vault" {
   name                = module.ccpay-vault.key_vault_name
