@@ -69,3 +69,9 @@ variable "service_bus_enable_private_endpoint" {
 }
 
 variable "aks_subscription_id" {}
+
+variable "sampling_percentage" {
+  type        = number
+  default     = 25
+  description = "Application Insights sampling percentage"
+}

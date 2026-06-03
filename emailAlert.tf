@@ -29,6 +29,7 @@ module "feepay-fail-action-group" {
   env      = var.env
 
   resourcegroup_name     = azurerm_resource_group.rg.name
+  tags                   = local.tags
   action_group_name      = "feepay-fail-alert-${var.env}"
   short_name             = "feepay-alert"
   email_receiver_name    = "feepay Alerts"
