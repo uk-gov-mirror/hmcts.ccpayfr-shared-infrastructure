@@ -72,6 +72,6 @@ variable "aks_subscription_id" {}
 
 variable "sampling_percentage" {
   type        = number
-  default     = 100
+  default     = 25
   description = "Application Insights sampling percentage"
 }
