@@ -68,11 +68,11 @@ module "subscription-functional-test" {
 
   source             = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
   name               = local.subscription_name_functional_test
-  topic_name         = module.topic-functional-test[0].name
+  topic_name         = module.topic-functional-test[count.index].name
   namespace_id       = module.servicebus-namespace-premium.id
   max_delivery_count = "1"
 
-  depends_on = [module.topic-functional-test[0]]
+  depends_on = [module.topic-functional-test]
 }
 
 resource "azurerm_key_vault_secret" "servicebus_premium_primary_connection_string" {
